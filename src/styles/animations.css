@@ -1,0 +1,35 @@
+.entrance {
+  display: block !important;
+  animation: fade-in-out linear forwards;
+  animation-duration: 2s;
+}
+
+@keyframes fade-in-out {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);
+  }
+
+  15% {
+    opacity: 0.5;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 50%, 0);
+    transform: translate3d(0, 50%, 0);
+  }
+}
