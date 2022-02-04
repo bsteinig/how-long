@@ -26,3 +26,10 @@
   color: var(--font-color);
   display: none;
 }
+
+.show-title {
+  font-family: var(--display-font);
+  font-weight: 500;
+  font-size: 5em;
+  color: var(--font-color);
+}

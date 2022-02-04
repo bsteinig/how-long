@@ -1,23 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import "suncalc";
 import "animate.css";
 import "./styles/animations.css";
 import "./styles/app.css";
 import "./styles/gradients.css";
 
 function App() {
-  const [entrance, setEntrance] = useState("entrance");
+  const [position, setPosition] = useState();
 
-  const title = () => {
-    setEntrance(entrance ? "" : "entrance");
-  };
+  useEffect(() => {
+    if (navigator.geolocation) {
+      (async () => {
+        const getPos = async () => {
+          const pos = await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject);
+          });
+          setPosition([pos.coords.latitude, pos.coords.longitude]);
+          return true;
+        };
+        const locStatus = await getPos();
+        console.log(locStatus);
+      })();
+    } else {
+      alert("Geolocation is not supported by this browser. :(");
+    }
+  }, []);
 
-  onanimationend = () => {
-    setEntrance(entrance ? "" : "entrance");
-  };
+  useEffect(() => {
+    if (position) console.log("position set", position);
+  }, [position]);
 
   return (
-    <div className="main mirage" onClick={() => title()}>
-      <h1 className={`title ${entrance}`}>Solstice</h1>
+    <div className="main mirage">
+      <h1 className="show-title">Solstice Home</h1>
     </div>
   );
 }
